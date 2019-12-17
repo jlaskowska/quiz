@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quiz/widgets/home_screen.dart';
+import 'package:quiz/widgets/result_screen.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -7,7 +8,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         body: SafeArea(
-          child: HomeScreen(),
+          child: ResultScreen(),
+          // child: HomeScreen(),
         ),
       ),
     );
