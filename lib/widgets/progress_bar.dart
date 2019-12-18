@@ -2,35 +2,63 @@ import 'package:flutter/material.dart';
 import 'package:quiz/configs/app_colors.dart';
 
 class ProgressBar extends StatelessWidget {
+  static const _totalHeight = 50.0;
+  static const _circularBorderRadius = 40.0;
+  static const _borderWidth = 5.0;
+  static const _fillContainerMargin = 5.0;
+
+  final double width;
+  final int numberOfAnsweredQuestions;
+  final int totalNumberOfQuestions;
+
+  const ProgressBar({
+    this.width = 300,
+    @required this.numberOfAnsweredQuestions,
+    @required this.totalNumberOfQuestions,
+  });
+
   @override
   Widget build(BuildContext context) {
+    final outlineContainerHeight = _totalHeight;
+    final outlineContainerWidth = width;
+    final fillContainerHeight = outlineContainerHeight - 2 * _fillContainerMargin;
+    final totalFillContainerWidth = outlineContainerWidth - 2 * _fillContainerMargin;
+    final fillContainerWidth = totalFillContainerWidth * (numberOfAnsweredQuestions / totalNumberOfQuestions);
+
     return Stack(
       children: <Widget>[
         Container(
-          height: 50,
-          width: 300,
+          height: fillContainerHeight,
+          width: fillContainerWidth,
+          margin: EdgeInsets.all(_fillContainerMargin),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(40),
-            border: Border.all(width: 5, color: AppColors.darkSlateBlue),
+            borderRadius: BorderRadius.circular(_circularBorderRadius),
+            gradient: LinearGradient(
+              colors: [
+                AppColors.progressGradientStart,
+                AppColors.progressGradientEnd,
+              ],
+            ),
           ),
         ),
         Container(
-          child: FittedBox(
-            child: Text('Number of correct Answers'),
-          ),
-          height: 50,
-          width: 250,
+          height: outlineContainerHeight,
+          width: outlineContainerWidth,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(50),
-              border: Border(
-                top: BorderSide(width: 5, color: AppColors.darkSlateBlue),
-                bottom: BorderSide(width: 5, color: AppColors.darkSlateBlue),
-                left: BorderSide(width: 5, color: AppColors.darkSlateBlue),
-              ),
-              gradient: LinearGradient(
-                colors: [AppColors.progressGradientStart, AppColors.progressGradientEnd],
-              )),
-        )
+            borderRadius: BorderRadius.circular(_circularBorderRadius),
+            border: Border.all(
+              width: _borderWidth,
+              color: AppColors.darkSlateBlue,
+            ),
+          ),
+        ),
+        Container(
+          height: outlineContainerHeight,
+          width: outlineContainerWidth,
+          child: Center(
+            child: Text('$numberOfAnsweredQuestions/$totalNumberOfQuestions'),
+          ),
+        ),
       ],
     );
   }
