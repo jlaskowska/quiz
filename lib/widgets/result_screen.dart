@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz/configs/app_colors.dart';
 import 'package:quiz/widgets/button.dart';
 
 class ResultScreen extends StatelessWidget {
@@ -15,7 +16,7 @@ class ResultScreen extends StatelessWidget {
           flex: 6,
           child: Card(
             margin: EdgeInsets.all(20),
-            color: Theme.of(context).accentColor,
+            color: AppColors.resultCardBackgroundColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),
@@ -26,9 +27,13 @@ class ResultScreen extends StatelessWidget {
                 Center(
                   child: Text(
                     'Congratulations!',
+                    style: Theme.of(context).textTheme.display1,
                   ),
                 ),
-                Text('Your Score $numberOfCorrectAnswers / $numberOfQuestions'),
+                Text(
+                  'Your Score $numberOfCorrectAnswers / $numberOfQuestions',
+                  style: Theme.of(context).textTheme.subhead,
+                ),
               ],
             ),
           ),

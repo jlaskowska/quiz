@@ -7,4 +7,5 @@ class AppColors {
   static const dodgerBlue = const Color(0xff2a85e3);
   static const progressGradientStart = const Color(0xfff4556d);
   static const progressGradientEnd = const Color(0xffb66ef6);
+  static const resultCardBackgroundColor = const Color(0xff18da72);
 }
