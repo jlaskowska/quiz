@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:quiz/widgets/button.dart';
 
 class ResultScreen extends StatelessWidget {
   final int numberOfQuestions;
@@ -10,26 +12,37 @@ class ResultScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-          elevation: 15,
-          child: Column(
-            children: <Widget>[Text('Congratulations!')],
+        Expanded(
+          flex: 6,
+          child: Card(
+            margin: EdgeInsets.all(20),
+            color: Theme.of(context).accentColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+            elevation: 15,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Center(
+                  child: Text(
+                    'Congratulations!',
+                  ),
+                ),
+                Text('Your Score $numberOfCorrectAnswers / $numberOfQuestions'),
+              ],
+            ),
           ),
         ),
-        Row(
-          children: <Widget>[
-            RaisedButton(
-              child: Text('Main Menu'),
-              onPressed: null,
-            ),
-            RaisedButton(
-              child: Text('Play Again'),
-              onPressed: null,
-            ),
-          ],
+        Expanded(
+          flex: 3,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Button(buttonLabel: 'Main Menu', onPressed: () {}),
+              Button(buttonLabel: 'Play Again', onPressed: () {}),
+            ],
+          ),
         ),
       ],
     );
