@@ -15,15 +15,11 @@ class MyApp extends StatelessWidget {
         primaryColor: AppColors.darkSlateGray,
         accentColor: AppColors.dodgerBlue,
         scaffoldBackgroundColor: AppColors.darkSlateGray,
-        fontFamily: GoogleFonts.sourceSansPro().fontFamily,
+        fontFamily: GoogleFonts.oxygen().fontFamily,
       ),
       home: Scaffold(
         body: SafeArea(
-          child: ResultScreen(
-            numberOfCorrectAnswers: 5,
-            numberOfQuestions: 10,
-          ),
-          // child: QuizzScreen(),
+          child: QuizzScreen(),
           // child: HomeScreen(),
         ),
       ),

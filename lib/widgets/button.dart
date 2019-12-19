@@ -13,10 +13,16 @@ class Button extends StatelessWidget {
       height: 60,
       child: RaisedButton(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.0),
+          borderRadius: BorderRadius.circular(30.0),
         ),
         color: Theme.of(context).accentColor,
-        child: Text(buttonLabel),
+        child: Text(
+          buttonLabel,
+          style: TextStyle(
+            fontWeight: FontWeight.w900,
+            fontSize: 20,
+          ),
+        ),
         onPressed: onPressed,
       ),
     );
