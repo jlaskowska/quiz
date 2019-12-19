@@ -18,6 +18,7 @@ class _QuizzScreenState extends State<QuizzScreen> {
   List<Question> questions = [];
   int numberOfCorrectAnswers = 0;
   int numberOfQuestions = 10;
+  String selectedAnswer;
 
   @override
   void initState() {
@@ -40,28 +41,38 @@ class _QuizzScreenState extends State<QuizzScreen> {
   }
 
   void getCorrectAnswer() {
-    String correctAnswer = questions[questionIndex].correctAnswer;
-
     // if correcctAnswer == true, dann numberOfCorrectAnswers ++
     // if correctAswers != true, dann numberOfCorrectAnswers++
   }
 
   void updateQuiz() {
-    setState(() {
-      if (questionIndex + 1 < questions.length) {
+    if (selectedAnswer == null) {
+      return;
+    }
+
+    String correctAnswer = questions[questionIndex].correctAnswer;
+    print('correctAnswer: $correctAnswer');
+    print('selectedAnswer: $selectedAnswer');
+    if (selectedAnswer == correctAnswer.toLowerCase()) {
+      numberOfCorrectAnswers++;
+    }
+    print('numberOfCorrectAnswers: $numberOfCorrectAnswers');
+
+    if (++questionIndex < questions.length) {
+      setState(() {
         questionText = questions[questionIndex].question;
-        questionIndex++;
-      } else
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ResultScreen(
-              numberOfCorrectAnswers: numberOfCorrectAnswers,
-              numberOfQuestions: numberOfQuestions,
-            ),
+        selectedAnswer = null;
+      });
+    } else
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ResultScreen(
+            numberOfCorrectAnswers: numberOfCorrectAnswers,
+            numberOfQuestions: numberOfQuestions,
           ),
-        );
-    });
+        ),
+      );
   }
 
   @override
@@ -74,40 +85,43 @@ class _QuizzScreenState extends State<QuizzScreen> {
         children: <Widget>[
           Center(
             child: ProgressBar(
-              numberOfAnsweredQuestions: questionIndex + 1,
+              numberOfAnsweredQuestions: questionIndex,
               totalNumberOfQuestions: 10,
             ),
           ),
           Text(
-            'Question ${questionIndex + 1}/10',
-            style: TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.w900,
-              color: AppColors.darkSlateBlue,
-            ),
-          ),
-          Divider(
-            thickness: 2,
-          ),
-          Text(
             questionText,
+            textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 25,
               fontWeight: FontWeight.w700,
             ),
           ),
           AnswerCard(
-            'True',
+            titleLabel: 'True',
+            isSelected: selectedAnswer == 'true',
+            onTap: () => setSelectedAnswer('true'),
           ),
-          AnswerCard('False'),
+          AnswerCard(
+            titleLabel: 'False',
+            isSelected: selectedAnswer == 'false',
+            onTap: () => setSelectedAnswer('false'),
+          ),
           Center(
             child: Button(
               buttonLabel: 'Next',
-              onPressed: updateQuiz,
+              onPressed: selectedAnswer != null ? updateQuiz : null,
             ),
           )
         ],
       ),
     );
+  }
+
+  void setSelectedAnswer(String text) {
+    print('here');
+    setState(() {
+      selectedAnswer = text;
+    });
   }
 }

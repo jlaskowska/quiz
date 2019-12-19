@@ -2,9 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:quiz/configs/app_colors.dart';
 
 class AnswerCard extends StatelessWidget {
+  final bool isSelected;
+  final Function onTap;
   final String titleLabel;
 
-  AnswerCard(this.titleLabel);
+  AnswerCard({
+    @required this.titleLabel,
+    @required this.isSelected,
+    @required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +26,10 @@ class AnswerCard extends StatelessWidget {
         ),
         trailing: Icon(
           Icons.check_circle,
-          color: AppColors.dodgerBlue,
+          color: isSelected ? AppColors.dodgerBlue : AppColors.darkSlateBlue,
           size: 30,
         ),
-        onTap: () {},
+        onTap: onTap,
       ),
     );
   }

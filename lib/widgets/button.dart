@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz/configs/app_colors.dart';
 
 class Button extends StatelessWidget {
   final String buttonLabel;
@@ -16,6 +17,7 @@ class Button extends StatelessWidget {
           borderRadius: BorderRadius.circular(30.0),
         ),
         color: Theme.of(context).accentColor,
+        disabledColor: AppColors.darkSlateBlue,
         child: Text(
           buttonLabel,
           style: TextStyle(
