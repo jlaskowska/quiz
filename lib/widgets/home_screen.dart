@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:quiz/widgets/button.dart';
+import 'package:quiz/widgets/quizz_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: RaisedButton(
-        child: Text('Play'),
-        onPressed: () {},
-      ),
-    );
+        child: Button(
+      buttonLabel: 'Play',
+      onPressed: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => QuizzScreen()));
+      },
+    ));
   }
 }
