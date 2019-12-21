@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:quiz/widgets/quiz.dart';
 
 import '../models/question.dart';
 import '../services/quiz_service.dart';
-import 'quizz_screen.dart';
 
 class GameScreen extends StatefulWidget {
   @override
@@ -41,7 +41,7 @@ class _GameScreenState extends State<GameScreen> {
             ? Center(
                 child: CircularProgressIndicator(),
               )
-            : QuizzScreen(
+            : Quiz(
                 questions: questions,
               ),
       ),

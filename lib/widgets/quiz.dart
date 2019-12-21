@@ -5,16 +5,16 @@ import 'package:quiz/widgets/button.dart';
 import 'package:quiz/widgets/progress_bar.dart';
 import 'package:quiz/widgets/result_screen.dart';
 
-class QuizzScreen extends StatefulWidget {
+class Quiz extends StatefulWidget {
   final List<Question> questions;
 
-  QuizzScreen({@required this.questions});
+  Quiz({@required this.questions});
 
   @override
-  _QuizzScreenState createState() => _QuizzScreenState();
+  _QuizState createState() => _QuizState();
 }
 
-class _QuizzScreenState extends State<QuizzScreen> {
+class _QuizState extends State<Quiz> {
   int questionIndex;
   String questionText;
   int numberOfCorrectAnswers = 0;
