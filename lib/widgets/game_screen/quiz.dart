@@ -78,15 +78,22 @@ class _QuizState extends State<Quiz> {
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              AnswerCard(
-                titleLabel: 'True',
-                isSelected: selectedAnswer == 'true',
-                onTap: () => setSelectedAnswer('true'),
-              ),
-              AnswerCard(
-                titleLabel: 'False',
-                isSelected: selectedAnswer == 'false',
-                onTap: () => setSelectedAnswer('false'),
+              Column(
+                children: <Widget>[
+                  AnswerCard(
+                    titleLabel: 'True',
+                    isSelected: selectedAnswer == 'true',
+                    onTap: () => setSelectedAnswer('true'),
+                  ),
+                  SizedBox(
+                    height: 24,
+                  ),
+                  AnswerCard(
+                    titleLabel: 'False',
+                    isSelected: selectedAnswer == 'false',
+                    onTap: () => setSelectedAnswer('false'),
+                  ),
+                ],
               ),
               Center(
                 child: Button(
