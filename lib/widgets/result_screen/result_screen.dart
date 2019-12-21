@@ -20,7 +20,7 @@ class ResultScreen extends StatelessWidget {
               flex: 6,
               child: Card(
                 margin: EdgeInsets.all(20),
-                color: AppColors.resultCardBackgroundColor,
+                color: AppColors.green,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),

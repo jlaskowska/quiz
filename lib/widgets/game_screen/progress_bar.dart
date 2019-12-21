@@ -35,8 +35,8 @@ class ProgressBar extends StatelessWidget {
             borderRadius: BorderRadius.circular(_circularBorderRadius),
             gradient: LinearGradient(
               colors: [
-                AppColors.progressGradientStart,
-                AppColors.progressGradientEnd,
+                AppColors.tomato,
+                AppColors.purple,
               ],
             ),
           ),
