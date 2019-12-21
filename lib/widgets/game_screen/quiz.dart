@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:quiz/models/question.dart';
-import 'package:quiz/widgets/answer_card.dart';
-import 'package:quiz/widgets/button.dart';
-import 'package:quiz/widgets/progress_bar.dart';
-import 'package:quiz/widgets/result_screen.dart';
+import 'package:quiz/widgets/common/button.dart';
+import 'package:quiz/widgets/game_screen/answer_card.dart';
+import 'package:quiz/widgets/game_screen/progress_bar.dart';
+import 'package:quiz/widgets/result_screen/result_screen.dart';
 
 class Quiz extends StatefulWidget {
   final List<Question> questions;
@@ -18,8 +18,9 @@ class _QuizState extends State<Quiz> {
   int questionIndex;
   String questionText;
   int numberOfCorrectAnswers = 0;
-  int numberOfQuestions = 10;
   String selectedAnswer;
+
+  int get numberOfQuestions => widget.questions.length;
 
   @override
   void initState() {
@@ -66,7 +67,7 @@ class _QuizState extends State<Quiz> {
               Center(
                 child: ProgressBar(
                   numberOfAnsweredQuestions: questionIndex,
-                  totalNumberOfQuestions: 10,
+                  totalNumberOfQuestions: numberOfQuestions,
                 ),
               ),
               Text(

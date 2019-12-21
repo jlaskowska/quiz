@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:quiz/widgets/game_screen.dart';
-import 'package:quiz/widgets/home_screen.dart';
-import 'package:quiz/widgets/result_screen.dart';
 import 'package:quiz/configs/app_colors.dart';
+import 'package:quiz/widgets/home_screen/home_screen.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -18,9 +16,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         body: SafeArea(
-          child: GameScreen(),
-          // child: QuizzScreen(),
-          // child: HomeScreen(),
+          child: HomeScreen(),
         ),
       ),
     );

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:quiz/widgets/quiz.dart';
+import 'package:quiz/widgets/game_screen/quiz.dart';
 
-import '../models/question.dart';
-import '../services/quiz_service.dart';
+import '../../models/question.dart';
+import '../../services/quiz_service.dart';
 
 class GameScreen extends StatefulWidget {
   @override
@@ -12,7 +12,7 @@ class GameScreen extends StatefulWidget {
 class _GameScreenState extends State<GameScreen> {
   bool isLoading;
   List<Question> questions;
-  static const numberOfQuestions = 10;
+  static const numberOfQuestions = 1;
 
   @override
   void initState() {

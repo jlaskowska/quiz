@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz/configs/app_colors.dart';
-import 'package:quiz/widgets/button.dart';
-import 'package:quiz/widgets/game_screen.dart';
-import 'package:quiz/widgets/home_screen.dart';
+import 'package:quiz/widgets/common/button.dart';
+import 'package:quiz/widgets/game_screen/game_screen.dart';
 
 class ResultScreen extends StatelessWidget {
   final int numberOfQuestions;
@@ -51,12 +50,7 @@ class ResultScreen extends StatelessWidget {
                   Button(
                       buttonLabel: 'Main Menu',
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => HomeScreen(),
-                          ),
-                        );
+                        Navigator.of(context).popUntil((route) => route.isFirst);
                       }),
                   Button(
                       buttonLabel: 'Play Again',
