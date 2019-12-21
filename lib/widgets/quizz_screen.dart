@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:quiz/models/question.dart';
-import 'package:quiz/services/quiz_service.dart';
 import 'package:quiz/widgets/answer_card.dart';
 import 'package:quiz/widgets/button.dart';
 import 'package:quiz/widgets/progress_bar.dart';
 import 'package:quiz/widgets/result_screen.dart';
 
 class QuizzScreen extends StatefulWidget {
+  final List<Question> questions;
+
+  QuizzScreen({@required this.questions});
+
   @override
   _QuizzScreenState createState() => _QuizzScreenState();
 }
@@ -14,7 +17,6 @@ class QuizzScreen extends StatefulWidget {
 class _QuizzScreenState extends State<QuizzScreen> {
   int questionIndex;
   String questionText;
-  List<Question> questions = [];
   int numberOfCorrectAnswers = 0;
   int numberOfQuestions = 10;
   String selectedAnswer;
@@ -22,21 +24,7 @@ class _QuizzScreenState extends State<QuizzScreen> {
   @override
   void initState() {
     questionIndex = 0;
-    questionText = '';
-    getQuestions();
-  }
-
-  void getQuestions() async {
-    try {
-      questions = await QuizService().getQuestions(numberOfQuestions);
-      print(questions);
-
-      setState(() {
-        questionText = questions[questionIndex].question;
-      });
-    } catch (error) {
-      print('An error occured: $error');
-    }
+    questionText = widget.questions[questionIndex].question;
   }
 
   void updateQuiz() {
@@ -44,14 +32,14 @@ class _QuizzScreenState extends State<QuizzScreen> {
       return;
     }
 
-    String correctAnswer = questions[questionIndex].correctAnswer;
+    String correctAnswer = widget.questions[questionIndex].correctAnswer;
     if (selectedAnswer == correctAnswer.toLowerCase()) {
       numberOfCorrectAnswers++;
     }
 
-    if (++questionIndex < questions.length) {
+    if (++questionIndex < widget.questions.length) {
       setState(() {
-        questionText = questions[questionIndex].question;
+        questionText = widget.questions[questionIndex].question;
         selectedAnswer = null;
       });
     } else

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quiz/widgets/game_screen.dart';
 import 'package:quiz/widgets/home_screen.dart';
-import 'package:quiz/widgets/progress_bar.dart';
-import 'package:quiz/widgets/quizz_screen.dart';
 import 'package:quiz/widgets/result_screen.dart';
 import 'package:quiz/configs/app_colors.dart';
 
@@ -19,7 +18,8 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         body: SafeArea(
-          child: QuizzScreen(),
+          child: GameScreen(),
+          // child: QuizzScreen(),
           // child: HomeScreen(),
         ),
       ),

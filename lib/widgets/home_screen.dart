@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quiz/widgets/button.dart';
-import 'package:quiz/widgets/quizz_screen.dart';
+import 'package:quiz/widgets/game_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -9,7 +9,7 @@ class HomeScreen extends StatelessWidget {
         child: Button(
       buttonLabel: 'Play',
       onPressed: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => QuizzScreen()));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => GameScreen()));
       },
     ));
   }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:quiz/configs/app_colors.dart';
 import 'package:quiz/widgets/button.dart';
+import 'package:quiz/widgets/game_screen.dart';
 import 'package:quiz/widgets/home_screen.dart';
-import 'package:quiz/widgets/quizz_screen.dart';
 
 class ResultScreen extends StatelessWidget {
   final int numberOfQuestions;
@@ -64,7 +64,7 @@ class ResultScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => QuizzScreen(),
+                            builder: (context) => GameScreen(),
                           ),
                         );
                       }),
