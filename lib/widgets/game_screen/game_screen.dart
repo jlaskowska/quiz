@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz/configs/app_colors.dart';
 import 'package:quiz/widgets/game_screen/quiz.dart';
 
 import '../../models/question.dart';
@@ -16,6 +17,8 @@ class _GameScreenState extends State<GameScreen> {
 
   @override
   void initState() {
+    super.initState();
+
     getQuestions();
   }
 
@@ -25,12 +28,30 @@ class _GameScreenState extends State<GameScreen> {
     });
 
     questions = await QuizService().getQuestions(numberOfQuestions);
-    print(questions);
-    //TODO questions could be null
 
-    setState(() {
-      isLoading = false;
-    });
+    if (questions == null) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Ooops!'),
+          content: Text('Something went wrong.'),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Try again'),
+              onPressed: () {
+                Navigator.pop(context);
+                getQuestions();
+              },
+            ),
+          ],
+          backgroundColor: AppColors.dodgerBlue,
+        ),
+      );
+    } else {
+      setState(() {
+        isLoading = false;
+      });
+    }
   }
 
   @override
