@@ -3,6 +3,7 @@ import 'package:quiz/models/question.dart';
 import 'package:quiz/widgets/common/button.dart';
 import 'package:quiz/widgets/game_screen/answer_card.dart';
 import 'package:quiz/widgets/game_screen/progress_bar.dart';
+import 'package:quiz/widgets/game_screen/result_card.dart';
 import 'package:quiz/widgets/result_screen/result_screen.dart';
 
 class Quiz extends StatefulWidget {
@@ -15,35 +16,51 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
-  int questionIndex;
+  static const delayDuration = 2;
+
+  int questionIndex = 0;
   String questionText;
   int numberOfCorrectAnswers = 0;
   String selectedAnswer;
+  bool isDelayActive = false;
+  bool isTrueCorrectAnswer;
 
   int get numberOfQuestions => widget.questions.length;
 
   @override
   void initState() {
-    questionIndex = 0;
+    super.initState();
+
     questionText = widget.questions[questionIndex].question;
   }
 
-  void updateQuiz() {
+  void updateQuiz() async {
     if (selectedAnswer == null) {
       return;
     }
 
     String correctAnswer = widget.questions[questionIndex].correctAnswer;
-    if (selectedAnswer == correctAnswer.toLowerCase()) {
+    isTrueCorrectAnswer = correctAnswer.toLowerCase() == 'true';
+
+    bool isPlayerCorrect = selectedAnswer == correctAnswer.toLowerCase();
+    if (isPlayerCorrect) {
       numberOfCorrectAnswers++;
     }
 
-    if (++questionIndex < widget.questions.length) {
+    setState(() {
+      isDelayActive = true;
+      questionIndex++;
+    });
+
+    await Future.delayed(Duration(seconds: delayDuration));
+
+    if (questionIndex < widget.questions.length) {
       setState(() {
         questionText = widget.questions[questionIndex].question;
         selectedAnswer = null;
+        isDelayActive = false;
       });
-    } else
+    } else {
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -53,6 +70,7 @@ class _QuizState extends State<Quiz> {
           ),
         ),
       );
+    }
   }
 
   @override
@@ -80,25 +98,35 @@ class _QuizState extends State<Quiz> {
               ),
               Column(
                 children: <Widget>[
-                  AnswerCard(
-                    titleLabel: 'True',
-                    isSelected: selectedAnswer == 'true',
-                    onTap: () => setSelectedAnswer('true'),
-                  ),
+                  isDelayActive
+                      ? ResultCard(
+                          titleLabel: 'True',
+                          isCorrect: isTrueCorrectAnswer,
+                        )
+                      : AnswerCard(
+                          titleLabel: 'True',
+                          isSelected: selectedAnswer == 'true',
+                          onTap: () => setSelectedAnswer('true'),
+                        ),
                   SizedBox(
                     height: 24,
                   ),
-                  AnswerCard(
-                    titleLabel: 'False',
-                    isSelected: selectedAnswer == 'false',
-                    onTap: () => setSelectedAnswer('false'),
-                  ),
+                  isDelayActive
+                      ? ResultCard(
+                          titleLabel: 'False',
+                          isCorrect: !isTrueCorrectAnswer,
+                        )
+                      : AnswerCard(
+                          titleLabel: 'False',
+                          isSelected: selectedAnswer == 'false',
+                          onTap: () => setSelectedAnswer('false'),
+                        ),
                 ],
               ),
               Center(
                 child: Button(
                   buttonLabel: 'Next',
-                  onPressed: selectedAnswer != null ? updateQuiz : null,
+                  onPressed: selectedAnswer != null && !isDelayActive ? updateQuiz : null,
                 ),
               )
             ],
