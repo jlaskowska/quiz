@@ -12,7 +12,7 @@ class GameScreen extends StatefulWidget {
 class _GameScreenState extends State<GameScreen> {
   bool isLoading;
   List<Question> questions;
-  static const numberOfQuestions = 2;
+  static const numberOfQuestions = 10;
 
   @override
   void initState() {
