@@ -4,9 +4,9 @@ A simple quiz app built using Flutter. Design inspired by [Quiz App UI - Oma](ht
 
 ## Screenshots
 
-|                          |                          |                          |                          |
-| -------------------------| ------------------------ | ------------------------ | ------------------------ |
-| ![](_screenshots/01.png) | ![](_screenshots/02.png) | ![](_screenshots/03.png) | ![](_screenshots/04.png) |
+|                       |                              |                              |                              |
+|-----------------------|------------------------------|------------------------------|------------------------------|
+| ![](docs/gifs/01.gif) | ![](docs/screenshots/01.png) | ![](docs/screenshots/02.png) | ![](docs/screenshots/03.png) |
 
 ## Technical Info
 
